@@ -1,39 +1,6 @@
 <apex:page standardController="WorkOrder" > 
     <apex:slds />
-    <article class="slds-card">
-     <div id="slds-scope ">
-                <dl class="slds-list_horizontal slds-wrap slds-grid " >
-                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom  " title="Service Call">Service Call</dt>
-                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" value="{0,Number,Currency}">
-                        <apex:param value="{!workorder.Service_Call__c}" />
-                    </apex:outputText>
-                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom " title="Labor Total">Labor Total</dt>
-                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium  slds-border_bottom slds-text-align_right" value="{0,Number,Currency}">
-                        <apex:param value="{!workorder.Labor_Total__c}" />
-                    </apex:outputText>
-                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom " title="Parts Total">Parts Total</dt>
-                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" value="{0,Number,Currency}">
-                        <apex:param value="{!workorder.Parts_Total__c}" />
-                    </apex:outputText>
-                    <dt    class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom" style="width:50%" title="Supplies & Disposal">Supplies &#38; Disposal</dt>
-                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" style="width:50%" value="{0,Number,Currency}">
-                        <apex:param value="{!workorder.Supplies_Disposal__c}" />
-                    </apex:outputText>
-                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom" title="Tax">Tax</dt>
-                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" value="{0,Number,Currency}">
-                        <apex:param value="{!workorder.Tax__c}" />
-                    </apex:outputText>
-                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom" style="width:75%" title="Shipping & Handling Total">Shipping &#38; Handling Total</dt>
-                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" style="width:25%" value="{0,Number,Currency}">
-                        <apex:param value="{!workorder.Shipping_Total__c}" />
-                    </apex:outputText>
-                    <dt class="slds-item_label slds-text-color_weak  slds-text-heading_medium slds-border_bottom " style="width:50%" title="Grand Total">Grand Total</dt>
-                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" style="font-weight:bold;width:50%" value="{0,Number,Currency}">
-                        <apex:param value="{!workorder.Grand_Total__c}" />
-                    </apex:outputText>
-                </dl>
-            </div>
-        </article>
+    
     <div class="slds-scope" >
         <article class="slds-card slds-m-top_x-large">
             <div class="slds-page-header" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
