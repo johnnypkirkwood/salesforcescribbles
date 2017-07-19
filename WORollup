@@ -1,4 +1,4 @@
-<apex:page standardController="WorkOrder" > 
+<apex:page standardController="WorkOrder" >
     <apex:slds />
     <article class="slds-card">
      <div id="slds-scope ">
@@ -81,9 +81,9 @@
                 </thead>
                 <tbody>
                     <apex:repeat var="WOLIs" value="{!WorkOrder.WorkOrderLineItems}">
-                        <tr class="slds-card__body " >    
+                        <tr class="slds-card__body " >
                             <th scope="row" data-label="Line Item" class="">
-                                <apex:outputLink value="/{!WOLIs.Id}">{!WOLIs.LineItemNumber}</apex:outputLink>   
+                                <apex:outputLink value="/{!WOLIs.Id}">{!WOLIs.LineItemNumber}</apex:outputLink>
                             </th>
                             <td data-label="Complaint" class="">
                                 <div class="slds-truncate slds-cell-wrap" title="{!WOLIs.Complaint__c}">{!WOLIs.Complaint__c}</div>
@@ -107,10 +107,10 @@
                                 <div class="slds-truncate" title="{!WOLIs.Billed_Duration__c}">{!WOLIs.Billed_Duration__c}</div>
                             </td>
                         </tr>
-                        
+
                     </apex:repeat>
                 </tbody>
-                
+
             </table>
             <footer class="slds-card__footer"><a href="javascript:void(0);">View All <span class="slds-assistive-text">entity type</span></a></footer>
         </article>
@@ -159,18 +159,18 @@
                 </thead>
                 <tbody>
                     <apex:repeat var="SAs" value="{!WorkOrder.ServiceAppointments}">
-                        <tr class="" >    
+                        <tr class="" >
                             <th scope="row" data-label="Appointment" class="">
-                                <apex:outputLink value="/{!SAs.Id}">{!SAs.AppointmentNumber}</apex:outputLink>   
+                                <apex:outputLink value="/{!SAs.Id}">{!SAs.AppointmentNumber}</apex:outputLink>
                             </th>
                             <td data-label="Status" class="">
                                 <div class="slds-truncate slds-cell-wrap" title="{!SAs.Status}">{!SAs.Status}</div>
                             </td>
                             <th scope="row" data-label="Service Tech" class="">
-                                <apex:outputLink value="/{!SAs.Service_Tech__r.Id}">{!SAs.Service_Tech__r.Name}</apex:outputLink>   
+                                <apex:outputLink value="/{!SAs.Service_Tech__r.Id}">{!SAs.Service_Tech__r.Name}</apex:outputLink>
                             </th>
                             <th scope="row" data-label="Campground" class="">
-                                <apex:outputLink value="/{!SAs.Campground__r.Id}">{!SAs.Campground__r.Name}</apex:outputLink>   
+                                <apex:outputLink value="/{!SAs.Campground__r.Id}">{!SAs.Campground__r.Name}</apex:outputLink>
                             </th>
                             <td data-label="Start Time" class="">
                                 <apex:outputText value=" {!SAs.SchedStartTime}"/>
@@ -181,9 +181,9 @@
                             <td data-label="Duration (Hrs)" class="">
                                 <div class="slds-truncate" title="Duration(Hrs)">{!SAs.Duration}</div>
                             </td>
-                            
+
                         </tr>
-                        
+
                     </apex:repeat>
                 </tbody>
             </table>
@@ -232,12 +232,12 @@
                 </thead>
                 <tbody>
                     <apex:repeat var="PCs" value="{!WorkOrder.ProductsConsumed}">
-                        <tr class="" >    
+                        <tr class="" >
                            <th scope="row" data-label="Product Consumed" >
-                                <apex:outputLink value="/{!PCs.Id}">{!PCs.ProductConsumedNumber}</apex:outputLink>   
+                                <apex:outputLink value="/{!PCs.Id}">{!PCs.ProductConsumedNumber}</apex:outputLink>
                             </th>
                             <th scope="row" data-label="Product" class="">
-                                <apex:outputLink value="/{!PCs.Product2.Id}">{!PCs.Product2.Name}</apex:outputLink>   
+                                <apex:outputLink value="/{!PCs.Product2.Id}">{!PCs.Product2.Name}</apex:outputLink>
                             </th>
                              <td data-label="Product Description" class="">
                                 <div class="slds-truncate slds-cell-wrap" title="{!PCs.Part_Description__c}">{!PCs.Part_Description__c}</div>
@@ -256,7 +256,7 @@
                     </apex:outputText>
                             </td>
                         </tr>
-                        
+
                     </apex:repeat>
                 </tbody>
             </table>
