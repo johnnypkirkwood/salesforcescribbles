@@ -1,0 +1,267 @@
+<apex:page standardController="WorkOrder" > 
+    <apex:slds />
+    <article class="slds-card">
+     <div id="slds-scope ">
+                <dl class="slds-list_horizontal slds-wrap slds-grid " >
+                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom  " title="Service Call">Service Call</dt>
+                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" value="{0,Number,Currency}">
+                        <apex:param value="{!workorder.Service_Call__c}" />
+                    </apex:outputText>
+                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom " title="Labor Total">Labor Total</dt>
+                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium  slds-border_bottom slds-text-align_right" value="{0,Number,Currency}">
+                        <apex:param value="{!workorder.Labor_Total__c}" />
+                    </apex:outputText>
+                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom " title="Parts Total">Parts Total</dt>
+                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" value="{0,Number,Currency}">
+                        <apex:param value="{!workorder.Parts_Total__c}" />
+                    </apex:outputText>
+                    <dt    class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom" style="width:50%" title="Supplies & Disposal">Supplies &#38; Disposal</dt>
+                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" style="width:50%" value="{0,Number,Currency}">
+                        <apex:param value="{!workorder.Supplies_Disposal__c}" />
+                    </apex:outputText>
+                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom" title="Tax">Tax</dt>
+                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" value="{0,Number,Currency}">
+                        <apex:param value="{!workorder.Tax__c}" />
+                    </apex:outputText>
+                    <dt class="slds-item_label slds-text-heading_medium slds-text-color_weak slds-border_bottom" style="width:75%" title="Shipping & Handling Total">Shipping &#38; Handling Total</dt>
+                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" style="width:25%" value="{0,Number,Currency}">
+                        <apex:param value="{!workorder.Shipping_Total__c}" />
+                    </apex:outputText>
+                    <dt class="slds-item_label slds-text-color_weak  slds-text-heading_medium slds-border_bottom " style="width:50%" title="Grand Total">Grand Total</dt>
+                    <apex:outputText styleclass="slds-item_detail slds-text-heading_medium slds-border_bottom slds-text-align_right" style="font-weight:bold;width:50%" value="{0,Number,Currency}">
+                        <apex:param value="{!workorder.Grand_Total__c}" />
+                    </apex:outputText>
+                </dl>
+            </div>
+        </article>
+    <div class="slds-scope" >
+        <article class="slds-card slds-m-top_x-large">
+            <div class="slds-page-header" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-work-order-item" title="Description of icon when needed">
+                            <svg class="slds-icon" aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Asset.slds, 'assets/icons/standard-sprite/svg/symbols.svg#work_order_item')}"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Work Order Line Items">Work Order Line Items</h1>
+                    </div>
+                </div>
+            </div>
+            <table class="slds-table  slds-table_bordered slds-table_col-bordered  " >
+                <thead>
+                    <tr class="slds-text-title_caps slds-card__body">
+                        <th scope="col" class="" >
+                            <div class="slds-truncate" title="Line Item">Line Item</div>
+                        </th>
+                        <th scope="col" class="" >
+                            <div class="slds-truncate" title="Complaint">Complaint</div>
+                        </th>
+                        <th scope="col" class="" >
+                            <div class="slds-truncate" title="Cause">Cause</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Correction">Correction</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Line Item Type">Line Item Type</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Duration(Hours)">Duration</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Billed Duration(Hours)">Billed Duration</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat var="WOLIs" value="{!WorkOrder.WorkOrderLineItems}">
+                        <tr class="slds-card__body " >    
+                            <th scope="row" data-label="Line Item" class="">
+                                <apex:outputLink value="/{!WOLIs.Id}">{!WOLIs.LineItemNumber}</apex:outputLink>   
+                            </th>
+                            <td data-label="Complaint" class="">
+                                <div class="slds-truncate slds-cell-wrap" title="{!WOLIs.Complaint__c}">{!WOLIs.Complaint__c}</div>
+                            </td>
+                            <td data-label="Cause" class="">
+                                <div class="slds-truncate slds-cell-wrap" title="{!WOLIs.Cause__c}">{!WOLIs.Cause__c}</div>
+                            </td>
+                            <td data-label="Correction" class="">
+                                <div class="slds-truncate slds-cell-wrap" title="{!WOLIs.Correction__c}">{!WOLIs.Correction__c}</div>
+                            </td>
+                            <td data-label="Status" class="">
+                                <div class="slds-truncate" title="{!WOLIs.Status}">{!WOLIs.Status}</div>
+                            </td>
+                            <td data-label="Line Item Type" class="">
+                                <div class="slds-truncate" title="{!WOLIs.Line_Item_Type__c}">{!WOLIs.Line_Item_Type__c}</div>
+                            </td>
+                            <td data-label="Duration" class="">
+                                <div class="slds-truncate" title="{!WOLIs.Duration}">{!WOLIs.Duration}</div>
+                            </td>
+                            <td data-label="Billed Duration" class="">
+                                <div class="slds-truncate" title="{!WOLIs.Billed_Duration__c}">{!WOLIs.Billed_Duration__c}</div>
+                            </td>
+                        </tr>
+                        
+                    </apex:repeat>
+                </tbody>
+                
+            </table>
+            <footer class="slds-card__footer"><a href="javascript:void(0);">View All <span class="slds-assistive-text">entity type</span></a></footer>
+        </article>
+    </div>
+    <article class="slds-card slds-m-top_x-large">
+        <div class="slds-scope">
+            <div class="slds-page-header" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-service-appointment" title="Description of icon when needed">
+                            <svg class="slds-icon" aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Asset.slds, 'assets/icons/standard-sprite/svg/symbols.svg#service_appointment')}"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Work Order Line Items">Service Appointments</h1>
+                    </div>
+                </div>
+            </div>
+            <table class="slds-table slds-table_bordered slds-table_col-bordered " >
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col" class="" >
+                            <div class="slds-truncate" title="Appointment Number">Appointment</div>
+                        </th>
+                        <th scope="col" class="" >
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                        <th scope="col" class="" >
+                            <div class="slds-truncate" title="Service Tech">Service Tech</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Campground">Campground</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Scheduled Start">Scheduled Start</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Scheduled End">Scheduled End</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Duration(Hours)">Duration(Hrs)</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat var="SAs" value="{!WorkOrder.ServiceAppointments}">
+                        <tr class="" >    
+                            <th scope="row" data-label="Appointment" class="">
+                                <apex:outputLink value="/{!SAs.Id}">{!SAs.AppointmentNumber}</apex:outputLink>   
+                            </th>
+                            <td data-label="Status" class="">
+                                <div class="slds-truncate slds-cell-wrap" title="{!SAs.Status}">{!SAs.Status}</div>
+                            </td>
+                            <th scope="row" data-label="Service Tech" class="">
+                                <apex:outputLink value="/{!SAs.Service_Tech__r.Id}">{!SAs.Service_Tech__r.Name}</apex:outputLink>   
+                            </th>
+                            <th scope="row" data-label="Campground" class="">
+                                <apex:outputLink value="/{!SAs.Campground__r.Id}">{!SAs.Campground__r.Name}</apex:outputLink>   
+                            </th>
+                            <td data-label="Start Time" class="">
+                                <apex:outputText value=" {!SAs.SchedStartTime}"/>
+                            </td>
+                            <td data-label="End Time" class="">
+                                <apex:outputText value=" {!SAs.SchedEndTime}"/>
+                            </td>
+                            <td data-label="Duration (Hrs)" class="">
+                                <div class="slds-truncate" title="Duration(Hrs)">{!SAs.Duration}</div>
+                            </td>
+                            
+                        </tr>
+                        
+                    </apex:repeat>
+                </tbody>
+            </table>
+        </div>
+        <footer class="slds-card__footer"><a href="javascript:void(0);">View All <span class="slds-assistive-text">entity type</span></a></footer>
+    </article>
+    <div class="slds-scope">
+         <article class="slds-card slds-m-top_x-large">
+        <div class="slds-scope">
+            <div class="slds-page-header" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-product-consumed" title="Description of icon when needed">
+                            <svg class="slds-icon" aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Asset.slds, 'assets/icons/standard-sprite/svg/symbols.svg#product_consumed')}"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Work Order Line Items">Products Consumed</h1>
+                    </div>
+                </div>
+            </div>
+            <table class="slds-table slds-table_bordered slds-table_col-bordered " >
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col" class="" >
+                            <div class="slds-truncate" title="Product Consumed">Product Consumed</div>
+                        </th>
+                        <th scope="col" class="" >
+                            <div class="slds-truncate" title="Product">Product</div>
+                        </th>
+                        <th scope="col" class="" >
+                            <div class="slds-truncate" title="Product Description">Product Description</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Quantity Consumed">Quantity Consumed</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Unit Price">Unit Price</div>
+                        </th>
+                        <th scope="col" class="">
+                            <div class="slds-truncate" title="Parts Total">Parts Total</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat var="PCs" value="{!WorkOrder.ProductsConsumed}">
+                        <tr class="" >    
+                           <th scope="row" data-label="Product Consumed" >
+                                <apex:outputLink value="/{!PCs.Id}">{!PCs.ProductConsumedNumber}</apex:outputLink>   
+                            </th>
+                            <th scope="row" data-label="Product" class="">
+                                <apex:outputLink value="/{!PCs.Product2.Id}">{!PCs.Product2.Name}</apex:outputLink>   
+                            </th>
+                             <td data-label="Product Description" class="">
+                                <div class="slds-truncate slds-cell-wrap" title="{!PCs.Part_Description__c}">{!PCs.Part_Description__c}</div>
+                            </td>
+                             <td data-label="Quantity Consumed" class="">
+                                <div class="slds-truncate" title="{!PCs.QuantityConsumed}">{!PCs.QuantityConsumed}</div>
+                            </td>
+                            <td data-label="Unit Price" class="">
+                                <apex:outputText value="{0,Number,Currency}">
+                        <apex:param value="{!PCs.UnitPrice}" />
+                    </apex:outputText>
+                            </td>
+                            <td data-label="Parts Total" class="">
+                               <apex:outputText value="{0,Number,Currency}">
+                        <apex:param value="{!PCs.Parts_Total__c}" />
+                    </apex:outputText>
+                            </td>
+                        </tr>
+                        
+                    </apex:repeat>
+                </tbody>
+            </table>
+        </div>
+        <footer class="slds-card__footer"><a href="javascript:void(0);">View All <span class="slds-assistive-text">entity type</span></a></footer>
+    </article>
+    </div>
+</apex:page>
